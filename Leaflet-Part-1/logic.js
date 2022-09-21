@@ -8,18 +8,18 @@ d3.json(queryUrl).then(function(data) {
     // Once we get a response, send the data.features object to the createFeatures function.
     createFeatures(data.features);
     
-  });
-
-   earthquakeData = data.features
+    earthquakeData = data.features
+    
     function styleInfo(feature){
-      return {
-        radius: feature.properties.mag * 5
-      }
-    }
+       return {
+         radius: feature.properties.mag * 5
+       }
+     }  
+  });
+  
   
   function createFeatures(earthquakeData) {
-  
-    
+
     // Define a function that we want to run once for each feature in the features array.
     // Give each feature a popup that describes the place and time of the earthquake.
     function onEachFeature(feature, layer) {
@@ -34,22 +34,27 @@ d3.json(queryUrl).then(function(data) {
       pointToLayer: function(feature, latlng) {
         return L.circleMarker(latlng);
       },
+      
     })
-
+    
     // Send our earthquakes layer to the createMap function/
-    createMap(earthquakes);
+     createMap(earthquakes);
   }
   
   function createMap(earthquakes) {
   
     // Create the base layers.
-    var street = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    })
+    var street = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
+      attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
+      maxZoom: 20,
+      id: "outdoors-v10",
+      accessToken: API_KEY
+    });
   
     var topo = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
       attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
     });
+  
   
     // Create a baseMaps object.
     var baseMaps = {
@@ -67,7 +72,7 @@ d3.json(queryUrl).then(function(data) {
       center: [
         25.7117, -70.0944
       ],
-      zoom: 5,
+      zoom: 2,
       layers: [street, earthquakes]
     });
   
