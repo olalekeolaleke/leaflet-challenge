@@ -24,25 +24,6 @@ d3.json(queryUrl).then(function(data) {
        }
      }  
 
-     function getColor(magnitude) {
-      if (magnitude > 5) {
-        return "#ea2c2c";
-      }
-      if (magnitude > 4) {
-        return "#ea822c";
-      }
-      if (magnitude > 3) {
-        return "#ee9c00";
-      }
-      if (magnitude > 2) {
-        return "#eecc00";
-      }
-      if (magnitude > 1) {
-        return "#d4ee00";
-      }
-      return "#98ee00";
-    }
-
      function style (feature) {
       return {
           fillColor: getColor(feature.geometry.coordinates[2]),

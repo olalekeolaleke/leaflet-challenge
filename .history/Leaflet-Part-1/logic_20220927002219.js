@@ -43,6 +43,12 @@ d3.json(queryUrl).then(function(data) {
       return "#98ee00";
     }
 
+    function styleInfo(feature){
+      return {
+        radius: getColor(feature.properties.geometry.coordinates[2])
+      }
+    }  
+
      function style (feature) {
       return {
           fillColor: getColor(feature.geometry.coordinates[2]),
