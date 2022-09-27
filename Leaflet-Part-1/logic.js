@@ -47,7 +47,7 @@ d3.json(queryUrl).then(function(data) {
       return {
           fillColor: getColor(feature.properties.mag),
           weight: 2,
-          opacity: 1,
+          opacity: 1,/files-pri/T03CV0ZA43D-F043QT9AJQP/screenshot_2022-09-27_at_22.20.11.png
           color: 'white',
           dashArray: '3',
           fillOpacity: 0.7
