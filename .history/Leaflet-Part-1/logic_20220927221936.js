@@ -43,7 +43,7 @@ d3.json(queryUrl).then(function(data) {
       return "#98ee00";
     }
 
-     function styleInfo (feature) {
+     function style (feature) {
       return {
           fillColor: getColor(feature.properties.mag),
           weight: 2,
