@@ -43,17 +43,11 @@ d3.json(queryUrl).then(function(data) {
       return "#98ee00";
     }
 
-    function styleInfo(feature){
-      return {
-        radius: getColor(feature.properties.geometry.coordinates[2])
-      }
-    }  
-
      function styleInfo (feature) {
       return {
-          fillColor: getColor(feature.geometry.coordinates[2]),
+          fillColor: getColor(feature.properties.mag),
           weight: 2,
-          opacity: 1,
+          opacity: 1,/files-pri/T03CV0ZA43D-F043QT9AJQP/screenshot_2022-09-27_at_22.20.11.png
           color: 'white',
           dashArray: '3',
           fillOpacity: 0.7
@@ -86,11 +80,10 @@ d3.json(queryUrl).then(function(data) {
   function createMap(earthquakes) {
   
     // Create the base layers.
-    var street = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
-      attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
-      maxZoom: 20,
-      id: "outdoors-v10",
-      accessToken: API_KEY
+    var street = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    })
+  
     });
   
     var topo = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
@@ -103,6 +96,7 @@ d3.json(queryUrl).then(function(data) {
       "Street Map": street,
       "Topographic Map": topo
     };
+  
   
     // Create an overlay object to hold our overlay.
     var overlayMaps = {
